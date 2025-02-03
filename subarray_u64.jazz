@@ -1,0 +1,23 @@
+inline 
+fn sum_2(reg ptr u8[2] a) -> reg u64 {
+    reg u64 r t;
+    r  = (64u) a[0];
+    t = (64u) a[1];
+    r += t;
+    return r;
+}
+
+export 
+fn sum(reg ptr u8[10] a) -> reg ptr u64 {
+    reg u64 i r;
+    i = 0;
+    r = 0;
+    reg u64 t start_index;
+    while (i < 5) {
+        start_index = i; i *= 2;
+        t = sum_2(a[start_index : 2]);
+        r += t;
+        i += 1;
+    }
+    return r;
+}
